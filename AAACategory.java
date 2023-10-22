@@ -10,27 +10,26 @@ package mp5;
 
 public class AAACategory {
   
-  AssociativeArray<String,String> location_to_text;
+  AssociativeArray<String,String> mappings;
   String category_name;
 
   public AAACategory(String name){
     this.category_name = name;
-    this.location_to_text = new AssociativeArray<>();
+    this.mappings = new AssociativeArray<>();
   }
 
   /**
    * Adds the mapping of the imageLoc to the text to the category.
    */
   public void addItem(String imageLoc, String text){
-
+    this.mappings.set(imageLoc, text);
   }
 
   /**
    * Returns the name of the category
    */
   public String getCategory(){
-    //STUB
-    return new String();
+    return this.category_name;
   }
 
   /**
@@ -38,24 +37,35 @@ public class AAACategory {
    * @return
    */
     public String[] getImages(){
-    //STUB
-    return new String[1];
+      String[] imageArray = new String[this.mappings.size()];
+      int n = 0; // n keeps track of the index of non-null elements 
+      for (int i = 0; i < this.mappings.pairs.length; i++) { // i makes sure that it loops through the entire associative array
+        if(this.mappings.pairs[i] == null){
+          continue;
+        } else {
+          imageArray[n] = this.mappings.pairs[i].key;
+          n++;
+        } 
+      } // for
+    return imageArray;
   }
 
   /**
    * Returns the text associated with the given image loc in this category
    */
-    public String getText(){
-    //STUB
-    return new String();
+    public String getText(String imageLoc) throws KeyNotFoundException {
+      if (this.mappings.hasKey(imageLoc)){
+        return this.mappings.get(imageLoc);
+      } else {
+        throw new KeyNotFoundException();
+      }
   }
 
   /**
    * Determines if the provided image is stored in the category
    */
-  public boolean hasImage(){
-    //STUB
-    return true;
+  public boolean hasImage(String imageLoc){
+    return this.mappings.hasKey(imageLoc);
   }
   
 }
