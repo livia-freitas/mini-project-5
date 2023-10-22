@@ -11,40 +11,41 @@ package mp5;
  */
 public class AACMappings {
   
-  String current_category;
-  AssociativeArray<String, String[]> mappings;
+  AAACategory currentCategory;
+  AAACategory defaultCategory;
+  AssociativeArray<String, AAACategory> mappings;
 
   public AACMappings(){
-    this.current_category = "default";
-    this.mappings = new AssociativeArray<String, String[]>(); //creates an array that maps categories to their arrays of images
+    this.defaultCategory = new AAACategory("default");
+    this.currentCategory = defaultCategory;
+    this.mappings = new AssociativeArray<String, AAACategory>(); //creates an array that maps categories to their arrays of images
   }
 
   /**
    * Adds the mapping to the current category (or the default category if that is the current category)
    */
   public void add(String imageLoc, String text){
-    //STUB
+    this.currentCategory.mappings.set(imageLoc, text);
   }
 
   /**
    * Gets the current category
    */
   public String getCurrentCategory(){
-    return this.current_category;
+    return this.currentCategory.name;
   }
 
   /**
    * Provides an array of all the images in the current category
    */
   public String[] getImageLocs(){
-    //STUB
-    return new String[1];
+    return this.currentCategory.getImages();
   }
 
   /**
    * Given the image location selected, it determines the associated text with the image.
    */
-  public String getText(){
+  public String getText(String imageLoc){
     //STUB
     return new String();
   }
@@ -61,7 +62,7 @@ public class AACMappings {
    * Resets the current category of the AAC back to the default category
    */
   public void reset(){
-    this.current_category = "default";
+    this.currentCategory = this.defaultCategory;
   }
 
   /**
