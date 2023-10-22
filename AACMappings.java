@@ -11,4 +11,64 @@ package mp5;
  */
 public class AACMappings {
   
+  String current_category;
+  AssociativeArray<String, String[]> mappings;
+
+  public AACMappings(){
+    this.current_category = "default";
+    this.mappings = new AssociativeArray<String, String[]>(); //creates an array that maps categories to their arrays of images
+  }
+
+  /**
+   * Adds the mapping to the current category (or the default category if that is the current category)
+   */
+  public void add(String imageLoc, String text){
+    //STUB
+  }
+
+  /**
+   * Gets the current category
+   */
+  public String getCurrentCategory(){
+    return this.current_category;
+  }
+
+  /**
+   * Provides an array of all the images in the current category
+   */
+  public String[] getImageLocs(){
+    //STUB
+    return new String[1];
+  }
+
+  /**
+   * Given the image location selected, it determines the associated text with the image.
+   */
+  public String getText(){
+    //STUB
+    return new String();
+  }
+
+  /**
+   * Determines if the image represents a category or text to speak
+   */
+  public boolean isCategory(String imageLoc){
+    //STUB
+    return true;
+  }
+
+  /**
+   * Resets the current category of the AAC back to the default category
+   */
+  public void reset(){
+    this.current_category = "default";
+  }
+
+  /**
+   * Writes the ACC mappings stored to a file.
+   * @param filename
+   */
+  public void writeToFile(String filename){
+
+  }
 }
