@@ -1,4 +1,6 @@
 package mp5;
+import java.io.FileWriter;   
+import java.io.IOException;  
 
 /**
  * Author: Livia Stein Freitas. 
@@ -45,16 +47,22 @@ public class AACMappings {
   /**
    * Given the image location selected, it determines the associated text with the image.
    */
-  public String getText(String imageLoc){
-    //STUB
-    return new String();
+  public String getText(String imageLoc) throws KeyNotFoundException{
+    for(int i = 0; i < this.mappings.pairs.length; i++){
+      if(this.mappings.pairs[i] == null){
+        continue;
+      } else if (this.mappings.pairs[i].value.hasImage(imageLoc)){
+        return this.mappings.pairs[i].value.getText(imageLoc);
+      } //if
+    }//for
+    throw new KeyNotFoundException();
   }
 
   /**
    * Determines if the image represents a category or text to speak
    */
   public boolean isCategory(String imageLoc){
-    //STUB
+    // STUB
     return true;
   }
 
@@ -70,6 +78,20 @@ public class AACMappings {
    * @param filename
    */
   public void writeToFile(String filename){
-
-  }
-}
+    try {
+      FileWriter writerTool = new FileWriter(filename);
+      for(int i = 0; i < this.mappings.pairs.length; i++){
+        if(this.mappings.pairs[i] == null){
+          continue;
+        } else {
+          writerTool.write("\n" + this.mappings.pairs[i].key + ", " + this.mappings.pairs[i].value);
+        } 
+      writerTool.close();
+      System.out.println("Wrote to " + filename + " successfully.");
+      }//for
+    } catch (IOException e) {
+    System.out.println("Could not print to " + filename + ". Will print stack trace.");
+    e.printStackTrace();
+    }//catch
+  }//writeToFile
+}//AACMappings
