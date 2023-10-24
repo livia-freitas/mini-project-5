@@ -1,6 +1,4 @@
-package mp5.structures;
-import java.lang.Object;
-import mp5.structures.KVPair;
+package mp5;
 import static java.lang.reflect.Array.newInstance;
 
 /**
@@ -94,12 +92,12 @@ public class AssociativeArray<K, V> {
   public void set(K _key, V _value) { 
     int i = this.find(_key);
     if(i == -1) { // if the array is full and there is no match, add K/V pair to the last slot of the array
-      KVPair newPair = new KVPair<K, V>(_key, _value);
+      KVPair<K,V> newPair = new KVPair<K, V>(_key, _value);
       this.expand();
       i = this.find(_key);
       this.pairs[i] = newPair;
     } else { //otherwise, set it to the first null/first match
-      KVPair newPair = new KVPair<K, V>(_key, _value);
+      KVPair<K,V> newPair = new KVPair<K, V>(_key, _value);
       this.pairs[i] = newPair;
     }
   }// set()
