@@ -62,9 +62,15 @@ public class AACMappings {
    * Determines if the image represents a category or text to speak
    */
   public boolean isCategory(String imageLoc){
-    // STUB
-    return true;
-  }
+      for(int i = 0; i < this.mappings.pairs.length; i++){
+        if(this.mappings.pairs[i] == null){
+          continue;
+        } else if (this.mappings.pairs[i].value.name.equals(imageLoc)){
+          return true;
+        } //if
+      }//for
+    return false;
+  }//isCategory
 
   /**
    * Resets the current category of the AAC back to the default category
