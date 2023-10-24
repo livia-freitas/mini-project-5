@@ -13,14 +13,14 @@ import java.io.IOException;
  */
 public class AACMappings {
   
-  AAACategory currentCategory;
-  AAACategory defaultCategory;
-  AssociativeArray<String, AAACategory> mappings;
+  AACCategory currentCategory;
+  AACCategory defaultCategory;
+  AssociativeArray<String, AACCategory> mappings;
 
   public AACMappings(){
-    this.defaultCategory = new AAACategory("default");
+    this.defaultCategory = new AACCategory("default");
     this.currentCategory = defaultCategory;
-    this.mappings = new AssociativeArray<String, AAACategory>(); //creates an array that maps categories to their arrays of images
+    this.mappings = new AssociativeArray<String, AACCategory>(); //creates an array that maps categories to their arrays of images
   }
 
   /**
